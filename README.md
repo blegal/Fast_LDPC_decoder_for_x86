@@ -26,7 +26,7 @@ Then compile the source codes using "make"
 
 > make
 
-The output must see something like this:
+The output must look like this:
 
 [C++] ../src/CBitGenerator/CBitGenerator.cpp
 [C++] ../src/CChanel/CChanel.cpp
@@ -53,8 +53,9 @@ The output must see something like this:
 [C++] ../src/main_p.cpp
 [LINKING] main.icc
 
-To launch the LDPC decoder compiled (576x288), just execute
-"main.icc" with some parameters:
+The compilation of the 576x288 LDPC decoder (default configuration) was successful,
+the executable file is named "main.icc". To launch the LDPC decoder compiled
+(576x288), just execute "main.icc" with some parameters:
 
 OMS decoder (offset = 1/8)
 > ./main.icc -fixed -avx -OMS 1 -min 0.5 -max 4.0 -iter 20
