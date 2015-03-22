@@ -93,7 +93,7 @@ CChanelAWGN_MKL::~CChanelAWGN_MKL(){
 }
 
 void CChanelAWGN_MKL::configure(double _Eb_N0){
-    
+
     rendement = (float) (_vars) / (float) (_data);
     if (es_n0) {
         // ES/N0 = Eb/N0 + 10*log10(R*m)
@@ -103,8 +103,8 @@ void CChanelAWGN_MKL::configure(double _Eb_N0){
         Eb_N0 = _Eb_N0 - 10.0 * log10(2 * rendement);
     } else {
         Eb_N0 = _Eb_N0;
-    }    
-    
+    }
+
     double interm = 10.0 * log10(rendement);
     interm        = -0.1*((double)Eb_N0+interm);
     SigB          = sqrt(pow(10.0,interm)/2);
@@ -130,7 +130,7 @@ void CChanelAWGN_MKL::generate() {
     float mv = (qpsk) ? -QPSK : -BPSK; // BPSK OU QPSK (CODAGES LES + SIMPLES)
 
     int nbData = (_frames*_data);
-    vsRngGaussian( VSL_METHOD_SGAUSSIAN_BOXMULLER2, stream, nbData, (float*)noise, 0.0f, SigB );        
+    vsRngGaussian( VSL_METHOD_SGAUSSIAN_BOXMULLER2, stream, nbData, (float*)noise, 0.0f, SigB );
 
     //
     // ON LAISSE ICC DEROULER LA BOUCLE AINSI C'EST SSE ET AVX COMPATIBLE (4 TIBO)
@@ -141,4 +141,3 @@ void CChanelAWGN_MKL::generate() {
 
     }
 }
-#endif

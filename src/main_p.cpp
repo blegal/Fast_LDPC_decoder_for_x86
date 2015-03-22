@@ -17,9 +17,9 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include <stdio.h>  
-#include <math.h>                        
-#include <stdlib.h>     
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include <limits.h>
@@ -67,7 +67,7 @@ struct param_simulation {
 
     bool   fer_limit;
     double fer_limit_value;
-    
+
     bool   llr_optimization;
     bool   real_encoder;
     int    STOP_TIMER_SECOND;
@@ -101,7 +101,9 @@ int vSAT_NEG_LLR  = SAT_NEG_MSG;
 int vSAT_POS_LLR  = SAT_POS_MSG;
 int vFRAQ_LLR     = NB_BITS_VARIABLES / 2;
 
- int FACTEUR_BETA = (0x0001<<(NB_BITS_MESSAGES/2));
+int FACTEUR_BETA = (0x0001<<(NB_BITS_MESSAGES/2));
+
+#define MAX_THREADS 4
 
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -133,11 +135,11 @@ int main(int argc, char* argv[]) {
 
     p_decoder.nms_factor_fixed = 29;
     p_decoder.nms_factor_float = 0.75;
-    
+
     p_decoder.oms_offset_fixed = 1;
     p_decoder.oms_offset_float = 0.15;
-    
-    
+
+
     int    NOMBRE_ITERATIONS = 30;
     int    STOP_TIMER_SECOND = -1;
     int    nb_frames         = 16;
@@ -384,7 +386,7 @@ int main(int argc, char* argv[]) {
     for(int i=0; i<4; i++){
         encoder[i] = EncoderLibrary(p_simulation.real_encoder, simu_data[i]);
     }
-    
+
     CChanel* noise[MAX_THREADS];
     for(int i=0; i<4; i++){
         noise[i] = CreateChannel(arch, p_simulation.channel_type, simu_data[i], p_simulation.qpsk_channel, p_simulation.Es_N0);
@@ -416,7 +418,7 @@ int main(int argc, char* argv[]) {
             conv_fp[i] = new CFastFixConversion(simu_data[i], FACTEUR_BETA, vSAT_NEG_LLR, vSAT_POS_LLR);
             conv_fp[i]->ShowHistoOnDestroy(p_simulation.show_llr_histo);
         }
-        
+
         bool auto_fe_mode = false;
         CErrorAnalyzer  errCounters  (simu_data[0], p_simulation.fe_limit, auto_fe_mode, p_simulation.worst_case_fer);
         for(int i=0; i<4; i++){
@@ -452,7 +454,7 @@ int main(int argc, char* argv[]) {
 
         CTimer timer[MAX_THREADS];
         long int etime[MAX_THREADS] = {0, 0, 0, 0};
-        
+
         CTimer biais_measure(false);
         biais_measure.start();
         biais_measure.stop();
@@ -462,7 +464,7 @@ int main(int argc, char* argv[]) {
             const int maxLoopF = 32768;
             int loopf  = (8 * NUM_ACTIVE_THREADS) * (64800 / NOEUD);
             loopf      = loopf > maxLoopF ? maxLoopF: loopf;
-            
+
             int d1[maxLoopF], d2[maxLoopF], d3[maxLoopF], d4[maxLoopF];
             int f1[maxLoopF], f2[maxLoopF], f3[maxLoopF], f4[maxLoopF];
 
@@ -643,14 +645,14 @@ int main(int argc, char* argv[]) {
                 break;
             }
         }
-        
+
         if (p_simulation.fer_limit == true) {
             if (errCounters.fer_value() < p_simulation.fer_limit_value) {
                 printf("(II) THE SIMULATION HAS STOP DUE TO THE (USER) QUASI-ERROR FREE CONTRAINT (on FER).\n");
                 break;
             }
         }
-        
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -765,7 +767,7 @@ int main(int argc, char* argv[]) {
     //
     //
     ////////////////////////////////////////////////////////////////////////////////
-    
+
     //
     // ON FAIT LE MENAGE PARMIS TOUS LES OBJETS CREES DYNAMIQUEMENT...
     //
@@ -780,4 +782,3 @@ int main(int argc, char* argv[]) {
 
     return 1;
 }
-

@@ -52,6 +52,7 @@ main.icc: $(OBJ)
 
 clean:
 	find ../src/ -name "*.o" -exec rm {} \;
+	find . -name "*.ic*" -exec rm {} \;
 
 mrproper: clean
 	rm $(EXEC)
