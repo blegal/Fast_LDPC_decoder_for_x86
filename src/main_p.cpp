@@ -626,10 +626,8 @@ int main(int argc, char* argv[]) {
                 printf("(PERF) Kernel Execution time = %ld us for %.0f frames => %1.3f Mbps\n", etime[z], nf, nb);
                 sum += nb;
             }
-            float latenc1 = etime[0] * nb_frames / (errCounters.nb_processed_frames()/4); // en us
-            printf("(PERF) SNR = %.2f, ITERS = %d, LATENCY    = %1.3f us\n", Eb_N0, NOMBRE_ITERATIONS, latenc1);
             printf("(PERF) SNR = %.2f, ITERS = %d, THROUGHPUT = %1.3f Mbps\n", Eb_N0, NOMBRE_ITERATIONS, sum);
-            printf("(PERF) Total Kernel throughput = %1.3f Mbps\n", sum);
+            printf("(PERF) LDPC decoder air throughput = %1.3f Mbps\n", sum);
         }
 
         Eb_N0 = Eb_N0 + p_simulation.snr_pas;
@@ -683,7 +681,7 @@ int main(int argc, char* argv[]) {
             t_Timer1.stop();
             float debit = _N * ((exec * nb_frames) / ((float) t_Timer1.get_time_sec()));
             debit /= 1000000.0f;
-            printf("(PERF1) Total Kernel throughput = %1.3f Mbps\n", debit);
+            printf("(PERF1) LDPC decoder air throughput = %1.3f Mbps\n", debit);
         }
 
         //
@@ -716,7 +714,7 @@ int main(int argc, char* argv[]) {
             // for each decoder run, we decoded nb_frames codewords (depending on the SIMD width)
             float debit = _N * ((exec * nb_frames) / ((float) t_Timer2.get_time_sec()));
             debit /= 1000000.0f;
-            printf("(PERF2) Total Kernel throughput = %1.3f Mbps\n", debit);
+            printf("(PERF2) LDPC decoder air throughput = %1.3f Mbps\n", debit);
         }
 
 
@@ -759,7 +757,7 @@ int main(int argc, char* argv[]) {
 
             float debit = _N * ((exec * nb_frames) / ((float) t_Timer3.get_time_sec()));
             debit /= 1000000.0f;
-            printf("(PERF4) Total Kernel throughput = %1.3f Mbps\n", debit);
+            printf("(PERF4) LDPC decoder air throughput = %1.3f Mbps\n", debit);
         }
         exit(0);
     }

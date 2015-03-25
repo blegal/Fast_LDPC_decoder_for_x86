@@ -12,9 +12,13 @@ Originally, this source code piece is part of a much larger project
 that enables us to experiment LDPC decoding algorithm, data format, etc.
 It explains why some piece of code are useless for you ;-)
 
-In odrer to compile the LDPC decoder, you currently have to use Intel C++
+In order to compile the LDPC decoder, you currently have to use Intel C++
 compiler. Indeed, the ANWG channel model is implemented using the MKL library
 function.
+
+
+Source code compilation:
+########################
 
 In order to compile the LDPC decoders, just open a terminal and go in
 the "bin" directory.
@@ -64,6 +68,34 @@ OMS decoder (offset = 1/8)
 NMS decoder (factor = 29/32)
 > ./main.icc -fixed -avx -NMS 29 -min 0.5 -max 4.0 -iter 20
 > ./main.icc -fixed -avx -OMS 1 -min 0.5 -max 4.0 -iter 20
+
+
+Air throughput measure:
+#######################
+
+To measure the throughput performances, you have to use:
+
+> ./main.icc -fixed -sse -NMS 29 -iter 20 -NMS 29 -fer 10000000 -timer 10 -thread 1
+
+  +> timer 10 : measure and average on 10 seconds,
+  +> thread 1 : use one processor core only (1, 2, 4 values are supported),
+
+The result looks like this:
+
+> (PERF) H. LAYERED 16 fixed, 576x288 LDPC code, 20 its, 1 threads
+> (PERF) Kernel Execution time = 1638690 us for 229376 frames => 80.626 Mbps
+> (PERF) SNR = 0.50, ITERS = 20, THROUGHPUT = 80.626 Mbps
+> (PERF) LDPC decoder air throughput = 80.626 Mbps
+> (II) THE SIMULATION HAS STOP DUE TO THE (USER) TIME CONTRAINT.
+> (PERF1) LDPC decoder air throughput = 84.699 Mbps
+
+[PERF] provides the throughput value when the execution time is measured in the
+simulation loop. [PERF1] provides the throughput of the decoder outside the
+simulation loop.
+
+
+Extending the evaluation:
+#########################
 
 To compile more LDPC decoders (code length, etc), execute
 the build.py script from the bin directory:
