@@ -1,3 +1,9 @@
+#
+# WARNING: THIS CODE WAS COMPILED ON MACOS WITH INTEL COMPILER ONLY. IF YOU
+#          GET ISSUES ON OTHER PLATEFORM, PLEASE CONTACT ME THROUGH THE FORUM
+#          OR BY E-MAIL (bertrand.legal@ims-bordeaux.fr)
+#
+
 # Fast_LDPC_decoder_for_x86
 
 This is the source codes of the fast x86 LDPC decoder published (not yet) in
