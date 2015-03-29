@@ -1,13 +1,9 @@
-#
-# WARNING: THIS CODE WAS COMPILED ON MACOS WITH INTEL COMPILER ONLY. IF YOU
-#          GET ISSUES ON OTHER PLATEFORM, PLEASE CONTACT ME THROUGH THE FORUM
-#          OR BY E-MAIL (bertrand.legal@ims-bordeaux.fr)
-#
 
 # Fast_LDPC_decoder_for_x86
 
-This is the source codes of the fast x86 LDPC decoder published (not yet) in
-the IEEE TDPS journal, article.
+This is the source codes of the fast x86 LDPC decoders whose description and
+optimization techniques are published in the IEEE TDPS journal (article is
+  not yet accepted, in major revision state).
 
 In this git repository we published the source code of a LDPC decoder
 implementation optimized for x86 target. This LDPC decoder implementation
@@ -25,6 +21,11 @@ function.
 
 Source code compilation:
 ########################
+
+UNTIL NOW, THIS CODE WAS COMPILED ONLY MACOS WITH INTEL COMPILER (ICC). IF YOU
+GET ISSUES ON OTHER PLATEFORMS, PLEASE CONTACT ME THROUGH THE FORUM
+OR BY E-MAIL (bertrand.legal@ims-bordeaux.fr)
+
 
 In order to compile the LDPC decoders, just open a terminal and go in
 the "bin" directory.
