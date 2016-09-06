@@ -733,22 +733,22 @@ int main(int argc, char* argv[]) {
                     #pragma omp section
                     {
                         for (int qq = 0; qq < looper; qq++)
-                            decoder[0]->decode(simu_data[0]->get_t_fpoint_data(), simu_data[1]->get_t_decode_data(), NOMBRE_ITERATIONS);
+                            decoder[0]->decode(simu_data[0]->get_t_fpoint_data(), simu_data[0]->get_t_decode_data(), NOMBRE_ITERATIONS);
                     }
                     #pragma omp section
                     {
                         for (int qq = 0; qq < looper; qq++)
-                            decoder[1]->decode(simu_data[1]->get_t_fpoint_data(), simu_data[2]->get_t_decode_data(), NOMBRE_ITERATIONS);
+                            decoder[1]->decode(simu_data[1]->get_t_fpoint_data(), simu_data[1]->get_t_decode_data(), NOMBRE_ITERATIONS);
                     }
                     #pragma omp section
                         {
                         for (int qq = 0; qq < looper; qq++)
-                            decoder[2]->decode(simu_data[2]->get_t_fpoint_data(), simu_data[3]->get_t_decode_data(), NOMBRE_ITERATIONS);
+                            decoder[2]->decode(simu_data[2]->get_t_fpoint_data(), simu_data[2]->get_t_decode_data(), NOMBRE_ITERATIONS);
                     }
                     #pragma omp section
                     {
                         for (int qq = 0; qq < looper; qq++)
-                            decoder[3]->decode(simu_data[3]->get_t_fpoint_data(), simu_data[4]->get_t_decode_data(), NOMBRE_ITERATIONS);
+                            decoder[3]->decode(simu_data[3]->get_t_fpoint_data(), simu_data[3]->get_t_decode_data(), NOMBRE_ITERATIONS);
                     }
                 }
                 exec += 4 * looper;
