@@ -2,8 +2,10 @@
 # Fast_LDPC_decoder_for_x86
 
 This is the source codes of the fast x86 LDPC decoders whose description and
-optimization techniques are published in the IEEE TDPS journal (article is
-  not yet accepted, in major revision state).
+optimization techniques are published in the IEEE TDPS journal:
+
+B. Le Gal and C. Jégo. High-throughput multi-core LDPC decoders based on x86 processor.
+IEEE Transactions on Parallel and Distributed Systems, vol. 27 (5), pages 1373–1386, May 2016.
 
 In this git repository we published the source code of a LDPC decoder
 implementation optimized for x86 target. This LDPC decoder implementation
